@@ -13,7 +13,7 @@
     <link href="/css/font-awesome.min.css" rel="stylesheet" />
     <link href="/css/metisMenu.css" rel="stylesheet" />        
 </head>
-<body>   
+<body ng-app="pspApp">   
 
      <div id="wrapper">         
           <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -31,12 +31,12 @@
          <ul class="nav navbar-top-links navbar-right">              
               <li>
                    <form class="navbar-form">
-                         <div class="input-group custom-search-form">
+                         <div class="input-group custom-search-form" ng-controller="searchController">
                             <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search..." style="width:750px">                       
+                            <input type="text" class="form-control" placeholder="Search..." style="width:750px" ng-model="searchText">                       
                             </div>                   
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
+                                <button class="btn btn-default" ng-click="search()">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
@@ -360,8 +360,10 @@
     <!-- register Modal    -->
     <!--Footer-->
     <script src="/js/jquery-1.9.1.js"></script>
+    <script src="/js/angular.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/metisMenu.js"></script>
     <script src="/js/site.js"></script>
+    <script src="/js/clientscripts/app.js"></script>
 </body>
 </html>
