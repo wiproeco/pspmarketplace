@@ -6,7 +6,11 @@ var uploadModule_1 = require('../app_modules/uploadModule');
 var index = express_1.Router();
 /* GET users listing. */
 index.get('/', function (req, res, next) {
-    res.render("index");
+    var obj = new uploadModule_1.default();
+    obj.getDocuments()
+        .then(function (result) {
+        res.render("index", { documents: result });
+    });
 });
 index.post('/', function (req, res, next) {
     if (req.method.toLowerCase() == 'post') {

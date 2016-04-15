@@ -34,40 +34,26 @@ class uploadModule {
             }); 
         });
     }
-    /*uploadData(req, resp){
-        if (req.method.toLowerCase() == 'post') {
- 
-        //5.
- 
-        var fmr = new frd.IncomingForm();
-        fmr.parse(req, function (err, fields, files) {
-            resp.writeHead(200, { 'content-type': 'text/plain' });
- 
-        });
- 
-        fmr.on('end', function (fields, files) {
-            //6.
-            var tempPath = this.openedFiles[0].path;
- 
-            //7.
-            var fileName = this.openedFiles[0].name;
- 
-            //8.       
-            var newFileName = "//D-113077851/GopikrishnaShare/PSPMarketPlace/"+ fileName; //../FileUpload_" + fileName;
- 
-            //9.
-            filestore.copy(tempPath, newFileName, function (err) {
+    
+    getDocuments(){
+         var self = this;
+        return new Promise(function(resolve, reject){
+            self.dbHelperQueryObj.executeQuery((err, items) => {
                 if (err) {
-                    console.error(err);
-                } else {                    
-                    resp.end('File Uploaded');
+                    reject(err);
                 }
-            });
+                else {      
+                    var query = {
+                        query: 'SELECT c.title, c.description, c.url, c.date FROM c',
+                        parameters: []
+                    }              
+                    self.dbHelperQueryObj.find(query, (err, items) => {                      
+                         resolve(items);                       
+                    });
+                }
+            }); 
         });
- 
-        return;
-    }
-  }*/
+    } 
 }
 
 export default uploadModule;

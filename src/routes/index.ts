@@ -8,7 +8,11 @@ const index = Router();
 
 /* GET users listing. */
 index.get('/', function(req, res, next) {
-  res.render("index");
+    var obj = new uploadModule();
+    obj.getDocuments()
+    .then(function(result){
+        res.render("index", { documents : result });
+    });    
 });
 
 
