@@ -3,18 +3,20 @@ import * as fs from 'fs';
 import * as frd from 'formidable';
 import * as filestore from 'fs-extra';
 import uploadModule from '../app_modules/uploadModule';
+import express = require('express');
+
 
 const index = Router();
 
 /* GET users listing. */
 index.get('/', function(req, res, next) {
-    var obj = new uploadModule();
-    obj.getDocuments()
+    res.render("index");
+    /*var obj = new uploadModule();
+    obj.insertDocument1()
     .then(function(result){
         res.render("index", { documents : result });
-    });    
+    });    */
 });
-
 
 index.post('/', function(req, res, next) {
  if (req.method.toLowerCase() == 'post') {       
@@ -30,11 +32,13 @@ index.post('/', function(req, res, next) {
             
             var tempPath = this.openedFiles[0].path;
              
-            var fileName = this.openedFiles[0].name;
-                    
-            var newFileName = "//D-113077851/GopikrishnaShare/PSPMarketPlace/"+ fileName;
+            var fileName = this.openedFiles[0].name;                  
+            //var newFileName = "//D-113077851/GopikrishnaShare/PSPMarketPlace/"+ fileName;
+            var newFileName = "//D-113077851/uploads/"+ fileName;
+            //var newFileName = "http://localhost/node/uploads/"+ fileName;
             
-            uploadObj.url = newFileName;
+            var iisFilePath="http://D-113077851.fareast.corp.microsoft.com/uploads/"+fileName;
+            uploadObj.url = iisFilePath;
              
             filestore.copy(tempPath, newFileName, function (err) {
                 if (err) {

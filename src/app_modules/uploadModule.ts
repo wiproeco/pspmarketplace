@@ -54,7 +54,50 @@ class uploadModule {
             }); 
         });
     } 
+    
+    searchDocuments(searchText){
+       
+        var self = this;
+        return new Promise(function(resolve, reject){
+            self.dbHelperQueryObj.executeQuery((err, items) => {
+                if (err) {
+                    reject(err);
+                }
+                else {      
+                    var query = {                        
+                        query: 'SELECT c.title, c.description, c.url, c.date from c where contains(c.title,"'+searchText+'")',
+                        parameters: []
+                    }              
+                    self.dbHelperQueryObj.find(query, (err, items) => {                      
+                         resolve(items);                       
+                    });
+                }
+            }); 
+        });
+    } 
+    
+    
+     insertDocument1(){
+        var self = this;
+        return new Promise(function(resolve, reject){
+            self.dbHelperQueryObj.executeQuery((err, items) => {
+                if (err) {
+                    reject(err);
+                }
+                else {                    
+                    self.dbHelperQueryObj.addItem({"aa":"aa"}, (items) => {                      
+                         resolve(items);                       
+                    });
+                }
+            }); 
+        });
+    }
+    
+    
 }
+
+
+
 
 export default uploadModule;
 

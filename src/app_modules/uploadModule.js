@@ -45,6 +45,40 @@ var uploadModule = (function () {
             });
         });
     };
+    uploadModule.prototype.searchDocuments = function (searchText) {
+        var self = this;
+        return new es6_promise_1.Promise(function (resolve, reject) {
+            self.dbHelperQueryObj.executeQuery(function (err, items) {
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    var query = {
+                        query: 'SELECT c.title, c.description, c.url, c.date from c where contains(c.title,"' + searchText + '")',
+                        parameters: []
+                    };
+                    self.dbHelperQueryObj.find(query, function (err, items) {
+                        resolve(items);
+                    });
+                }
+            });
+        });
+    };
+    uploadModule.prototype.insertDocument1 = function () {
+        var self = this;
+        return new es6_promise_1.Promise(function (resolve, reject) {
+            self.dbHelperQueryObj.executeQuery(function (err, items) {
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    self.dbHelperQueryObj.addItem({ "aa": "aa" }, function (items) {
+                        resolve(items);
+                    });
+                }
+            });
+        });
+    };
     return uploadModule;
 }());
 Object.defineProperty(exports, "__esModule", { value: true });

@@ -6,11 +6,12 @@ var uploadModule_1 = require('../app_modules/uploadModule');
 var index = express_1.Router();
 /* GET users listing. */
 index.get('/', function (req, res, next) {
-    var obj = new uploadModule_1.default();
-    obj.getDocuments()
-        .then(function (result) {
-        res.render("index", { documents: result });
-    });
+    res.render("index");
+    /*var obj = new uploadModule();
+    obj.insertDocument1()
+    .then(function(result){
+        res.render("index", { documents : result });
+    });    */
 });
 index.post('/', function (req, res, next) {
     if (req.method.toLowerCase() == 'post') {
@@ -24,8 +25,11 @@ index.post('/', function (req, res, next) {
         fmr.on('end', function (fields, files) {
             var tempPath = this.openedFiles[0].path;
             var fileName = this.openedFiles[0].name;
-            var newFileName = "//D-113077851/GopikrishnaShare/PSPMarketPlace/" + fileName;
-            uploadObj.url = newFileName;
+            //var newFileName = "//D-113077851/GopikrishnaShare/PSPMarketPlace/"+ fileName;
+            var newFileName = "//D-113077851/uploads/" + fileName;
+            //var newFileName = "http://localhost/node/uploads/"+ fileName;
+            var iisFilePath = "http://localhost/uploads/" + fileName;
+            uploadObj.url = iisFilePath;
             filestore.copy(tempPath, newFileName, function (err) {
                 if (err) {
                     console.error(err);

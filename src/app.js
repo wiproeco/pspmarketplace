@@ -6,6 +6,7 @@ var path_1 = require('path');
 var index_1 = require('./routes/index');
 var usersRoute_1 = require('./routes/usersRoute');
 var uploadtest_1 = require('./routes/uploadtest');
+var search_1 = require('./routes/search');
 var cookieParser = require('cookie-parser'); // this module doesn't use the ES6 default export yet
 var app = express();
 // view engine setup
@@ -24,6 +25,7 @@ app.use('/fonts', express.static(__dirname + '/public/fonts'));
 app.use('/', index_1.default);
 app.use('/users', usersRoute_1.default);
 app.use('/upload', uploadtest_1.default);
+app.use('/search', search_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

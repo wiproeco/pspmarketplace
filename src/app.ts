@@ -5,6 +5,7 @@ import {join} from 'path';
 import index from './routes/index';
 import usersRoute from './routes/usersRoute';
 import upload from './routes/uploadtest';
+import search from './routes/search';
 import cookieParser = require('cookie-parser'); // this module doesn't use the ES6 default export yet
 
 const app: express.Express = express();
@@ -27,6 +28,7 @@ app.use('/fonts', express.static(__dirname + '/public/fonts'));
 app.use('/', index);
 app.use('/users', usersRoute);
 app.use('/upload', upload);
+app.use('/search', search);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -60,8 +62,6 @@ app.use((error: any, req, res, next) => {
   });
   return null;
 });
-
-
 
 
 export default app;
