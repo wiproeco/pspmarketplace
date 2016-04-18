@@ -14,6 +14,7 @@
     "debug": "~2.1.1",
     "documentdb": "^1.6.0",
     "ejs": "~0.7.1",
+    "ejs-locals": "^1.0.2",
     "es6-promise": "^3.1.2",
     "express": "~4.12.2",
     "formidable": "^1.0.17",

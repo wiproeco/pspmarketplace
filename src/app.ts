@@ -7,11 +7,13 @@ import usersRoute from './routes/usersRoute';
 import upload from './routes/uploadtest';
 import search from './routes/search';
 import cookieParser = require('cookie-parser'); // this module doesn't use the ES6 default export yet
+import engine = require('ejs-locals');
 
 const app: express.Express = express();
 
 // view engine setup
 app.set('views', join(__dirname, 'views'));
+app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public

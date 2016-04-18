@@ -10,12 +10,7 @@ const index = Router();
 
 /* GET users listing. */
 index.get('/', function(req, res, next) {
-    res.render("index");
-    /*var obj = new uploadModule();
-    obj.insertDocument1()
-    .then(function(result){
-        res.render("index", { documents : result });
-    });    */
+    res.render("index");    
 });
 
 index.post('/', function(req, res, next) {

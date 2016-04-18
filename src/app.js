@@ -8,9 +8,11 @@ var usersRoute_1 = require('./routes/usersRoute');
 var uploadtest_1 = require('./routes/uploadtest');
 var search_1 = require('./routes/search');
 var cookieParser = require('cookie-parser'); // this module doesn't use the ES6 default export yet
+var engine = require('ejs-locals');
 var app = express();
 // view engine setup
 app.set('views', path_1.join(__dirname, 'views'));
+app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));

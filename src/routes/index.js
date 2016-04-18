@@ -7,11 +7,6 @@ var index = express_1.Router();
 /* GET users listing. */
 index.get('/', function (req, res, next) {
     res.render("index");
-    /*var obj = new uploadModule();
-    obj.insertDocument1()
-    .then(function(result){
-        res.render("index", { documents : result });
-    });    */
 });
 index.post('/', function (req, res, next) {
     if (req.method.toLowerCase() == 'post') {
@@ -28,7 +23,7 @@ index.post('/', function (req, res, next) {
             //var newFileName = "//D-113077851/GopikrishnaShare/PSPMarketPlace/"+ fileName;
             var newFileName = "//D-113077851/uploads/" + fileName;
             //var newFileName = "http://localhost/node/uploads/"+ fileName;
-            var iisFilePath = "http://localhost/uploads/" + fileName;
+            var iisFilePath = "http://D-113077851.fareast.corp.microsoft.com/uploads/" + fileName;
             uploadObj.url = iisFilePath;
             filestore.copy(tempPath, newFileName, function (err) {
                 if (err) {
