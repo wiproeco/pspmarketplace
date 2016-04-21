@@ -11,6 +11,13 @@ import engine = require('ejs-locals');
 
 const app: express.Express = express();
 
+app.use(function(req, res, next) { //allow cross origin requests
+    res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 // view engine setup
 app.set('views', join(__dirname, 'views'));
 app.engine('ejs', engine);
@@ -31,6 +38,8 @@ app.use('/', index);
 app.use('/users', usersRoute);
 app.use('/upload', upload);
 app.use('/search', search);
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

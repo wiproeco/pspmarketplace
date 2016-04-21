@@ -10,6 +10,12 @@ var search_1 = require('./routes/search');
 var cookieParser = require('cookie-parser'); // this module doesn't use the ES6 default export yet
 var engine = require('ejs-locals');
 var app = express();
+app.use(function (req, res, next) {
+    res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 // view engine setup
 app.set('views', path_1.join(__dirname, 'views'));
 app.engine('ejs', engine);
